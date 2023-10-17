@@ -1,0 +1,14 @@
+# Remove the line below if you want to inherit .editorconfig settings from higher directories
+
+# C# or VB files
+[*.{cs,vb,ts,tsx}]
+guidelines = 120
+
+#### Core EditorConfig Options ####
+
+#Formatting - header template
+file_header_template = ---------------------------------------------------------------\nCopyright (c) North East London ICB. All rights reserved.\n---------------------------------------------------------------
+
+#sort System.* using directives alphabetically, and place them before other usings
+dotnet_sort_system_directives_first = true
+
