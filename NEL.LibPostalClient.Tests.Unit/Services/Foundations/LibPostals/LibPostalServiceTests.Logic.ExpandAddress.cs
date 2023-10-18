@@ -2,6 +2,7 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------------
 
+using System.Threading.Tasks;
 using FluentAssertions;
 using Force.DeepCloner;
 using Moq;
@@ -25,7 +26,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
                    .Returns(inputAddress);
 
             // when
-            string[] actualAddress = this.libPostalService.ExpandAddress(randomAddress);
+            ValueTask<string[]> actualAddress = this.libPostalService.ExpandAddress(randomAddress);
 
             // then
             actualAddress.Should().BeEquivalentTo(expectedAddress);

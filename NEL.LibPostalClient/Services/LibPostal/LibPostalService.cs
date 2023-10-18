@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NEL.LibPostalClient.Brokers.LibPostal;
 
 namespace NEL.LibPostalClient.Services.LibPostal
@@ -17,12 +18,12 @@ namespace NEL.LibPostalClient.Services.LibPostal
             this.libPostalBroker = libPostalBroker;
         }
 
-        public string[] ExpandAddress(string address)
+        public async ValueTask<string[]> ExpandAddress(string address)
         {
-            return this.libPostalBroker.ExpandAddress(address);
+            return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
         }
 
-        public List<KeyValuePair<string, string>> ParseAddress(string address) =>
+        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address) =>
             throw new NotImplementedException();
     }
 }

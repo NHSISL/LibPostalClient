@@ -3,12 +3,13 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
     internal interface ILibPostalService
     {
-        string[] ExpandAddress(string address);
-        List<KeyValuePair<string, string>> ParseAddress(string address);
+        ValueTask<string[]> ExpandAddress(string address);
+        ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address);
     }
 }
