@@ -8,7 +8,7 @@ using NEL.LibPostalClient.Brokers.LibPostal;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    internal class LibPostalService : ILibPostalService
+    internal partial class LibPostalService : ILibPostalService
     {
         private readonly ILibPostalBroker libPostalBroker;
 
