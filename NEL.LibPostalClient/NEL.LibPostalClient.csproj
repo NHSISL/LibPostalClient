@@ -44,4 +44,8 @@
 		<PackageReference Include="Xeption" Version="2.6.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\LibPostalNet\LibPostalNet.csproj" />
+	</ItemGroup>
+
 </Project>
