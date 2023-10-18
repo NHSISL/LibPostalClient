@@ -4,9 +4,9 @@
 
 using System.Collections.Generic;
 
-namespace NEL.LibPostalClient.Brokers.LibPostal
+namespace NEL.LibPostalClient.Services.LibPostal
 {
-    internal interface ILibPostalBroker
+    internal interface ILibPostalService
     {
         string[] ExpandAddress(string address);
         List<KeyValuePair<string, string>> ParseAddress(string address);
