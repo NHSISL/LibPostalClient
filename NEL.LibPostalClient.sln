@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NEL.LibPostalClient", "NEL.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NEL.LibPostalClient.Infrastructure", "NEL.LibPostalClient.Infrastructure\NEL.LibPostalClient.Infrastructure.csproj", "{B99B5798-18E4-4DD9-8CDB-A08F6B89CA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEL.LibPostalClient.Infrastructure.Tests.Unit", "NEL.LibPostalClient.Infrastructure.Tests.Unit\NEL.LibPostalClient.Infrastructure.Tests.Unit.csproj", "{7184373C-6377-4A12-8C05-95C2B87D56F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEL.LibPostalClient.Tests.Unit", "NEL.LibPostalClient.Tests.Unit\NEL.LibPostalClient.Tests.Unit.csproj", "{7184373C-6377-4A12-8C05-95C2B87D56F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEL.LibPostalClient.Infrastructure.Tests.Acceptance", "NEL.LibPostalClient.Infrastructure.Tests.Acceptance\NEL.LibPostalClient.Infrastructure.Tests.Acceptance.csproj", "{AB0D7591-3461-4E2B-BA6B-08A0063F9D50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEL.LibPostalClient.Tests.Acceptance", "NEL.LibPostalClient.Tests.Acceptance\NEL.LibPostalClient.Tests.Acceptance.csproj", "{AB0D7591-3461-4E2B-BA6B-08A0063F9D50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibPostalNet", "LibPostalNet\LibPostalNet.csproj", "{E5F5A2DC-A370-486C-BFED-ADEAB8ABBE33}"
 EndProject
