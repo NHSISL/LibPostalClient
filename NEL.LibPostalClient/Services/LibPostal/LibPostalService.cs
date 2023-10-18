@@ -17,8 +17,10 @@ namespace NEL.LibPostalClient.Services.LibPostal
             this.libPostalBroker = libPostalBroker;
         }
 
-        public string[] ExpandAddress(string address) =>
-            throw new NotImplementedException();
+        public string[] ExpandAddress(string address)
+        {
+            return this.libPostalBroker.ExpandAddress(address);
+        }
 
         public List<KeyValuePair<string, string>> ParseAddress(string address) =>
             throw new NotImplementedException();
