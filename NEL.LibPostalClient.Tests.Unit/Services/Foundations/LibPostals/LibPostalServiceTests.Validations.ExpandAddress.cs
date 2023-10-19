@@ -17,7 +17,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public async Task ShouldThrowValidationExceptionOnExpandIfAddressIsInvalidAndLogItAsync(
+        public async Task ShouldThrowValidationExceptionOnExpandIfArgumentIsInvalidAndLogItAsync(
             string invalidText)
         {
             // given

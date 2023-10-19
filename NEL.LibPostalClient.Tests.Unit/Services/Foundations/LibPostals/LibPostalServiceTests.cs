@@ -38,5 +38,6 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
 
         private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
            actualException => actualException.SameExceptionAs(expectedException);
+
     }
 }

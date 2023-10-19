@@ -2,9 +2,9 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------------
 
+using System;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Models.Foundations.LibPostal.Exceptions;
-using NEL.MESH.Models.Foundations.LibPostal.Exceptions;
 using Xeptions;
 
 namespace NEL.LibPostalClient.Services.LibPostal
@@ -20,24 +20,29 @@ namespace NEL.LibPostalClient.Services.LibPostal
             {
                 return await returningLibPostalAddressFunction();
             }
-            catch (InvalidAddressArgumentException invalidAddressArgumentException)
+            catch (Exception exception)
             {
-                throw CreateAndLogValidationException(invalidAddressArgumentException);
+                var failedAddressServiceException =
+                    new FailedAddressServiceException(
+                        message: "Failed address service occurred, please contact support",
+                        innerException: exception);
+
+                throw CreateAndLogServiceException(failedAddressServiceException);
+
             }
         }
 
-        private LibPostalValidationException CreateAndLogValidationException(Xeption exception)
+        private AddressServiceException CreateAndLogServiceException(
+            Xeption exception)
         {
-            var libPostalValidationException =
-                new LibPostalValidationException(
-                    message: "Address validation errors occurred, please try again.",
+            var addressServiceException =
+                new AddressServiceException(
+                    message: "Address service error occurred, contact support.",
                     innerException: exception);
 
-            this.loggingBroker.LogError(libPostalValidationException);
+            this.loggingBroker.LogError(addressServiceException);
 
-            return libPostalValidationException;
+            return addressServiceException;
         }
-
-
     }
 }
