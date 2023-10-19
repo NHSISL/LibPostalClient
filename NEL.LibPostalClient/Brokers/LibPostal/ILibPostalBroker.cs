@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace NEL.LibPostalClient.Brokers.LibPostal
 {
-    internal interface ILibPostalBroker
+    public interface ILibPostalBroker
     {
         string[] ExpandAddress(string address);
         List<KeyValuePair<string, string>> ParseAddress(string address);

@@ -47,9 +47,14 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             actualAddressValidationException.Should()
                 .BeEquivalentTo(expectedAddressValidationException);
 
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedAddressValidationException))),
+                        Times.Once);
+
             this.libPostalServiceBrokerMock.Verify(broker =>
                broker.ExpandAddress(It.IsAny<string>()),
-                   Times.Once);
+                   Times.Never);
 
             this.libPostalServiceBrokerMock.VerifyNoOtherCalls();
         }

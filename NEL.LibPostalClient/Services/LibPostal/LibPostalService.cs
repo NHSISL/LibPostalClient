@@ -6,22 +6,30 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Brokers.LibPostal;
+using NEL.LibPostalClient.Brokers.Loggings;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    internal partial class LibPostalService : ILibPostalService
+    public partial class LibPostalService : ILibPostalService
     {
         private readonly ILibPostalBroker libPostalBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public LibPostalService(ILibPostalBroker libPostalBroker)
+        public LibPostalService(
+            ILibPostalBroker libPostalBroker,
+            ILoggingBroker loggingBroker)
         {
             this.libPostalBroker = libPostalBroker;
+            this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<string[]> ExpandAddress(string address)
-        {
-            return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
-        }
+        public ValueTask<string[]> ExpandAddress(string address) =>
+            TryCatch(async () =>
+            {
+                ValidateAddressArgs(address);
+
+                return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
+            });
 
         public async ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address) =>
             throw new NotImplementedException();
