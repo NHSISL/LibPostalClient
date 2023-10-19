@@ -29,7 +29,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             ValueTask<string[]> actualAddress = this.libPostalService.ExpandAddress(randomAddress);
 
             // then
-            actualAddress.Should().BeEquivalentTo(expectedAddress);
+            actualAddress.Result[0].Should().BeEquivalentTo(expectedAddress);
 
             this.libPostalServiceBrokerMock.Verify(broker =>
                 broker.ExpandAddress(randomAddress),

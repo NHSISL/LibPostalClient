@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Models.Foundations.LibPostal.Exceptions;
+using NEL.MESH.Models.Foundations.LibPostal.Exceptions;
 using Xeptions;
 
 namespace NEL.LibPostalClient.Services.LibPostal
@@ -20,6 +21,10 @@ namespace NEL.LibPostalClient.Services.LibPostal
             {
                 return await returningLibPostalAddressFunction();
             }
+            catch (InvalidAddressArgumentException invalidAddressArgumentException)
+            {
+                throw CreateAndLogValidationException(invalidAddressArgumentException);
+            }
             catch (Exception exception)
             {
                 var failedAddressServiceException =
@@ -30,6 +35,18 @@ namespace NEL.LibPostalClient.Services.LibPostal
                 throw CreateAndLogServiceException(failedAddressServiceException);
 
             }
+        }
+
+        private LibPostalValidationException CreateAndLogValidationException(Xeption exception)
+        {
+            var libPostalValidationException =
+                new LibPostalValidationException(
+                    message: "Address validation errors occurred, please try again.",
+                    innerException: exception);
+
+            this.loggingBroker.LogError(libPostalValidationException);
+
+            return libPostalValidationException;
         }
 
         private AddressServiceException CreateAndLogServiceException(
