@@ -2,7 +2,6 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Brokers.LibPostal;
@@ -26,7 +25,12 @@ namespace NEL.LibPostalClient.Services.LibPostal
                 return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
             });
 
-        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address) =>
-            throw new NotImplementedException();
+        public ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address) =>
+             TryCatch(async () =>
+             {
+                 ValidateArgs(address);
+
+                 return await ValueTask.FromResult(libPostalBroker.ParseAddress(address));
+             });
     }
 }
