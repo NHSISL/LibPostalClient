@@ -49,6 +49,15 @@ namespace NEL.LibPostalClient.Services.LibPostal
             {
                 throw CreateAndLogValidationException(invalidArgumentLibPostalException);
             }
+            catch (Exception exception)
+            {
+                var failedLibPostalServiceException =
+                    new FailedLibPostalServiceException(
+                        message: "Failed Lib Postal service occurred, please contact support",
+                        innerException: exception);
+
+                throw CreateAndLogServiceException(failedLibPostalServiceException);
+            }
         }
 
         private LibPostalValidationException CreateAndLogValidationException(Xeption exception)
