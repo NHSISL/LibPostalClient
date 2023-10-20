@@ -26,7 +26,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
                    .Returns(inputAddress);
 
             // when
-            ValueTask<string[]> actualAddress = this.libPostalService.ExpandAddressAsync(randomAddress);
+            string[] actualAddress = await this.libPostalService.ExpandAddressAsync(randomAddress);
 
             // then
             actualAddress.Result[0].Should().BeEquivalentTo(expectedAddress);
