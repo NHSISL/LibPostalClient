@@ -25,9 +25,12 @@ namespace NEL.LibPostalClient.Services.LibPostal
                 return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
             });
 
-        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address)
-        {
-            return await Task.FromResult(this.libPostalBroker.ParseAddress(address));
-        }
+        public ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address) =>
+             TryCatch(async () =>
+             {
+                 ValidateArgs(address);
+
+                 return await ValueTask.FromResult(libPostalBroker.ParseAddress(address));
+             });
     }
 }

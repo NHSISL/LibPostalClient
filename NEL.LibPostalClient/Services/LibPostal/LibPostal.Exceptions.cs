@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Models.Foundations.LibPostal.Exceptions;
 using NEL.MESH.Models.Foundations.LibPostal.Exceptions;
@@ -13,6 +14,7 @@ namespace NEL.LibPostalClient.Services.LibPostal
     internal partial class LibPostalService
     {
         private delegate ValueTask<string[]> ReturningLibPostalAddressFunction();
+        private delegate ValueTask<List<KeyValuePair<string, string>>> ReturningLibPostalParseAddressFunction();
 
         private async ValueTask<string[]> TryCatch(
            ReturningLibPostalAddressFunction returningLibPostalAddressFunction)
@@ -33,6 +35,19 @@ namespace NEL.LibPostalClient.Services.LibPostal
                         innerException: exception);
 
                 throw CreateAndLogServiceException(failedLibPostalServiceException);
+            }
+        }
+
+        private async ValueTask<List<KeyValuePair<string, string>>> TryCatch(
+           ReturningLibPostalParseAddressFunction returningLibPostalParseAddressFunction)
+        {
+            try
+            {
+                return await returningLibPostalParseAddressFunction();
+            }
+            catch (InvalidArgumentLibPostalException invalidArgumentLibPostalException)
+            {
+                throw CreateAndLogValidationException(invalidArgumentLibPostalException);
             }
         }
 
