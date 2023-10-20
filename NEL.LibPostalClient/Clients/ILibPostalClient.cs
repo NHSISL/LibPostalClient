@@ -9,7 +9,7 @@ namespace NEL.LibPostalClient.Clients
 {
     public interface ILibPostalClient
     {
-        ValueTask<string[]> ExpandAddress(string address);
-        ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address);
+        ValueTask<string[]> ExpandAddressAsync(string address);
+        ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address);
     }
 }

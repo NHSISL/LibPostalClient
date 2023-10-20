@@ -37,7 +37,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
                     innerException: invalidArgumentLibPostalException);
 
             // when
-            ValueTask<string[]> expandAddressTask = this.libPostalService.ExpandAddress(invalidAddress);
+            ValueTask<string[]> expandAddressTask = this.libPostalService.ExpandAddressAsync(invalidAddress);
 
             LibPostalValidationException actualLibPostalValidationException =
                 await Assert.ThrowsAsync<LibPostalValidationException>(() =>

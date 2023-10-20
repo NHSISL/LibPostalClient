@@ -18,7 +18,7 @@ namespace NEL.LibPostalClient.Services.LibPostal
             this.libPostalBroker = libPostalBroker;
         }
 
-        public ValueTask<string[]> ExpandAddress(string address) =>
+        public ValueTask<string[]> ExpandAddressAsync(string address) =>
             TryCatch(async () =>
             {
                 ValidateArgs(address);
@@ -26,7 +26,7 @@ namespace NEL.LibPostalClient.Services.LibPostal
                 return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
             });
 
-        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address) =>
+        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address) =>
             throw new NotImplementedException();
     }
 }

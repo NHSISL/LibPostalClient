@@ -36,7 +36,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
 
             // when
             ValueTask<string[]> expandAddressTask =
-                 this.libPostalService.ExpandAddress(randomAddress);
+                 this.libPostalService.ExpandAddressAsync(randomAddress);
 
             LibPostalServiceException actualLibPostalsServiceException =
                 await Assert.ThrowsAsync<LibPostalServiceException>(

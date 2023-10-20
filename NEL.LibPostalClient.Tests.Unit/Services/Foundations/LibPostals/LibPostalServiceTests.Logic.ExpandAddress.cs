@@ -13,7 +13,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
     public partial class LibPostalServiceTests
     {
         [Fact]
-        public void ShouldExpandAddress()
+        public void ShouldExpandAddressAsync()
         {
             // given
             string randomAddress = GetRandomString();
@@ -26,7 +26,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
                    .Returns(inputAddress);
 
             // when
-            ValueTask<string[]> actualAddress = this.libPostalService.ExpandAddress(randomAddress);
+            ValueTask<string[]> actualAddress = this.libPostalService.ExpandAddressAsync(randomAddress);
 
             // then
             actualAddress.Result[0].Should().BeEquivalentTo(expectedAddress);
