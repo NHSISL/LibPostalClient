@@ -20,15 +20,15 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             var serviceException = new Exception();
             string randomAddress = GetRandomString();
 
-            var failedAddressServiceException =
-                new FailedAddressServiceException(
-                    message: "Failed address service occurred, please contact support",
+            var failedServiceException =
+                new FailedServiceException(
+                    message: "Failed service occurred, please contact support",
                     innerException: serviceException);
 
             var expectedAddressServiceException =
-                new AddressServiceException(
-                    message: "Address service error occurred, contact support.",
-                    innerException: failedAddressServiceException);
+                new LibPostalServiceException(
+                    message: "Lib Postal service error occurred, contact support.",
+                    innerException: failedServiceException);
 
             this.libPostalServiceBrokerMock.Setup(broker =>
               broker.ExpandAddress(randomAddress))
@@ -38,8 +38,8 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             ValueTask<string[]> expandAddressTask =
                  this.libPostalService.ExpandAddress(randomAddress);
 
-            AddressServiceException actualAddressServiceException =
-                await Assert.ThrowsAsync<AddressServiceException>(
+            LibPostalServiceException actualAddressServiceException =
+                await Assert.ThrowsAsync<LibPostalServiceException>(
                     expandAddressTask.AsTask);
 
             // then
@@ -50,13 +50,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
                 broker.ExpandAddress(It.IsAny<string>()),
                     Times.Once);
 
-            this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(
-                    expectedAddressServiceException))),
-                        Times.Once);
-
             this.libPostalServiceBrokerMock.VerifyNoOtherCalls();
-            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

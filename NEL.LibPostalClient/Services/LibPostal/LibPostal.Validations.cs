@@ -8,12 +8,12 @@ using Xeptions;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    public partial class LibPostalService
+    internal partial class LibPostalService
     {
-        public void ValidateAddressArgs(string address)
+        public void ValidateArgs(string address)
         {
-            Validate<InvalidAddressArgumentException>(
-                message: "Invalid address argument. Please correct the errors and try again.",
+            Validate<InvalidArgumentException>(
+                message: "Invalid argument. Please correct the errors and try again.",
                     (Rule: IsInvalid(address), Parameter: "address"));
         }
 

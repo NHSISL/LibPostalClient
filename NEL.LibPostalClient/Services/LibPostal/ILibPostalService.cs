@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    public interface ILibPostalService
+    internal interface ILibPostalService
     {
         ValueTask<string[]> ExpandAddress(string address);
         ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address);

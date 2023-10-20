@@ -7,9 +7,9 @@ using Xeptions;
 
 namespace NEL.LibPostalClient.Models.Foundations.LibPostal.Exceptions
 {
-    internal class FailedAddressServiceException : Xeption
+    public class FailedServiceException : Xeption
     {
-        public FailedAddressServiceException(string message, Exception innerException)
+        public FailedServiceException(string message, Exception innerException)
             : base(message, innerException)
         { }
     }

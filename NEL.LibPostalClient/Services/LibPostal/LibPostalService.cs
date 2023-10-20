@@ -6,27 +6,22 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NEL.LibPostalClient.Brokers.LibPostal;
-using NEL.LibPostalClient.Brokers.Loggings;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    public partial class LibPostalService : ILibPostalService
+    internal partial class LibPostalService : ILibPostalService
     {
         private readonly ILibPostalBroker libPostalBroker;
-        private readonly ILoggingBroker loggingBroker;
 
-        public LibPostalService(
-            ILibPostalBroker libPostalBroker,
-            ILoggingBroker loggingBroker)
+        public LibPostalService(ILibPostalBroker libPostalBroker)
         {
             this.libPostalBroker = libPostalBroker;
-            this.loggingBroker = loggingBroker;
         }
 
         public ValueTask<string[]> ExpandAddress(string address) =>
             TryCatch(async () =>
             {
-                ValidateAddressArgs(address);
+                ValidateArgs(address);
 
                 return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
             });

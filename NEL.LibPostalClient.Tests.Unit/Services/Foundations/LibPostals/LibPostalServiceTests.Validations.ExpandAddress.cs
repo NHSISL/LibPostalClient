@@ -23,18 +23,18 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             // given
             string invalidAddress = invalidText;
 
-            var invalidAddressArgumentException =
-                new InvalidAddressArgumentException(
-                    message: "Invalid address argument. Please correct the errors and try again.");
+            var invalidArgumentException =
+                new InvalidArgumentException(
+                    message: "Invalid argument. Please correct the errors and try again.");
 
-            invalidAddressArgumentException.AddData(
+            invalidArgumentException.AddData(
                 key: "address",
                 values: "Text is required");
 
-            var expectedAddressValidationException =
+            var expectedLibPostalValidationException =
                 new LibPostalValidationException(
-                    message: "Address validation errors occurred, please try again.",
-                    innerException: invalidAddressArgumentException);
+                    message: "Lib Postal validation errors occurred, please try again.",
+                    innerException: invalidArgumentException);
 
             // when
             ValueTask<string[]> expandAddressTask = this.libPostalService.ExpandAddress(invalidAddress);
@@ -45,15 +45,10 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
 
             // then
             actualAddressValidationException.Should()
-                .BeEquivalentTo(expectedAddressValidationException);
-
-            this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(
-                    expectedAddressValidationException))),
-                        Times.Once);
+                .BeEquivalentTo(expectedLibPostalValidationException);
 
             this.libPostalServiceBrokerMock.Verify(broker =>
-               broker.ExpandAddress(It.IsAny<string>()),
+               broker.ExpandAddress(invalidAddress),
                    Times.Never);
 
             this.libPostalServiceBrokerMock.VerifyNoOtherCalls();

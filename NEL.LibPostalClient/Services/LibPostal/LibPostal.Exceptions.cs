@@ -10,7 +10,7 @@ using Xeptions;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    public partial class LibPostalService
+    internal partial class LibPostalService
     {
         private delegate ValueTask<string[]> ReturningLibPostalAddressFunction();
 
@@ -21,15 +21,15 @@ namespace NEL.LibPostalClient.Services.LibPostal
             {
                 return await returningLibPostalAddressFunction();
             }
-            catch (InvalidAddressArgumentException invalidAddressArgumentException)
+            catch (InvalidArgumentException invalidAddressArgumentException)
             {
                 throw CreateAndLogValidationException(invalidAddressArgumentException);
             }
             catch (Exception exception)
             {
                 var failedAddressServiceException =
-                    new FailedAddressServiceException(
-                        message: "Failed address service occurred, please contact support",
+                    new FailedServiceException(
+                        message: "Failed service occurred, please contact support",
                         innerException: exception);
 
                 throw CreateAndLogServiceException(failedAddressServiceException);
@@ -41,25 +41,21 @@ namespace NEL.LibPostalClient.Services.LibPostal
         {
             var libPostalValidationException =
                 new LibPostalValidationException(
-                    message: "Address validation errors occurred, please try again.",
+                    message: "Lib Postal validation errors occurred, please try again.",
                     innerException: exception);
-
-            this.loggingBroker.LogError(libPostalValidationException);
 
             return libPostalValidationException;
         }
 
-        private AddressServiceException CreateAndLogServiceException(
+        private LibPostalServiceException CreateAndLogServiceException(
             Xeption exception)
         {
-            var addressServiceException =
-                new AddressServiceException(
-                    message: "Address service error occurred, contact support.",
+            var libPostalServiceException =
+                new LibPostalServiceException(
+                    message: "Lib Postal service error occurred, contact support.",
                     innerException: exception);
 
-            this.loggingBroker.LogError(addressServiceException);
-
-            return addressServiceException;
+            return libPostalServiceException;
         }
     }
 }
