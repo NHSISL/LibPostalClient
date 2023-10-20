@@ -6,9 +6,9 @@ using Xeptions;
 
 namespace NEL.LibPostalClient.Models.Foundations.LibPostal.Exceptions
 {
-    public class InvalidAddressException : Xeption
+    public class InvalidAddressLibPostalException : Xeption
     {
-        public InvalidAddressException(string message)
+        public InvalidAddressLibPostalException(string message)
             : base(message)
         { }
     }
