@@ -12,8 +12,8 @@ namespace NEL.LibPostalClient.Services.LibPostal
     {
         public void ValidateArgs(string address)
         {
-            Validate<InvalidArgumentException>(
-                message: "Invalid argument. Please correct the errors and try again.",
+            Validate<InvalidArgumentLibPostalException>(
+                message: "Invalid Lib Postal argument. Please correct the errors and try again.",
                     (Rule: IsInvalid(address), Parameter: "address"));
         }
 

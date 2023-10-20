@@ -21,19 +21,18 @@ namespace NEL.LibPostalClient.Services.LibPostal
             {
                 return await returningLibPostalAddressFunction();
             }
-            catch (InvalidArgumentException invalidAddressArgumentException)
+            catch (InvalidArgumentLibPostalException invalidArgumentLibPostalException)
             {
-                throw CreateAndLogValidationException(invalidAddressArgumentException);
+                throw CreateAndLogValidationException(invalidArgumentLibPostalException);
             }
             catch (Exception exception)
             {
-                var failedAddressServiceException =
-                    new FailedServiceException(
-                        message: "Failed service occurred, please contact support",
+                var failedLibPostalServiceException =
+                    new FailedLibPostalServiceException(
+                        message: "Failed Lib Postal service occurred, please contact support",
                         innerException: exception);
 
-                throw CreateAndLogServiceException(failedAddressServiceException);
-
+                throw CreateAndLogServiceException(failedLibPostalServiceException);
             }
         }
 

@@ -20,15 +20,15 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             var serviceException = new Exception();
             string randomAddress = GetRandomString();
 
-            var failedServiceException =
-                new FailedServiceException(
-                    message: "Failed service occurred, please contact support",
+            var failedLibPostalServiceException =
+                new FailedLibPostalServiceException(
+                    message: "Failed Lib Postal service occurred, please contact support",
                     innerException: serviceException);
 
-            var expectedAddressServiceException =
+            var expectedLibPostalServiceException =
                 new LibPostalServiceException(
                     message: "Lib Postal service error occurred, contact support.",
-                    innerException: failedServiceException);
+                    innerException: failedLibPostalServiceException);
 
             this.libPostalServiceBrokerMock.Setup(broker =>
               broker.ExpandAddress(randomAddress))
@@ -38,13 +38,13 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             ValueTask<string[]> expandAddressTask =
                  this.libPostalService.ExpandAddress(randomAddress);
 
-            LibPostalServiceException actualAddressServiceException =
+            LibPostalServiceException actualLibPostalsServiceException =
                 await Assert.ThrowsAsync<LibPostalServiceException>(
                     expandAddressTask.AsTask);
 
             // then
-            actualAddressServiceException.Should()
-                .BeEquivalentTo(expectedAddressServiceException);
+            actualLibPostalsServiceException.Should()
+                .BeEquivalentTo(expectedLibPostalServiceException);
 
             this.libPostalServiceBrokerMock.Verify(broker =>
                 broker.ExpandAddress(It.IsAny<string>()),

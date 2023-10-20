@@ -23,28 +23,28 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             // given
             string invalidAddress = invalidText;
 
-            var invalidArgumentException =
-                new InvalidArgumentException(
-                    message: "Invalid argument. Please correct the errors and try again.");
+            var invalidArgumentLibPostalException =
+                new InvalidArgumentLibPostalException(
+                    message: "Invalid Lib Postal argument. Please correct the errors and try again.");
 
-            invalidArgumentException.AddData(
+            invalidArgumentLibPostalException.AddData(
                 key: "address",
                 values: "Text is required");
 
             var expectedLibPostalValidationException =
                 new LibPostalValidationException(
                     message: "Lib Postal validation errors occurred, please try again.",
-                    innerException: invalidArgumentException);
+                    innerException: invalidArgumentLibPostalException);
 
             // when
             ValueTask<string[]> expandAddressTask = this.libPostalService.ExpandAddress(invalidAddress);
 
-            LibPostalValidationException actualAddressValidationException =
+            LibPostalValidationException actualLibPostalValidationException =
                 await Assert.ThrowsAsync<LibPostalValidationException>(() =>
                     expandAddressTask.AsTask());
 
             // then
-            actualAddressValidationException.Should()
+            actualLibPostalValidationException.Should()
                 .BeEquivalentTo(expectedLibPostalValidationException);
 
             this.libPostalServiceBrokerMock.Verify(broker =>
