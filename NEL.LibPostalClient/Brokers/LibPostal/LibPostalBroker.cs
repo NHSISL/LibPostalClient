@@ -8,7 +8,7 @@ using NEL.LibPostalClient.Models.Brokers.LibPostal;
 
 namespace NEL.LibPostalClient.Brokers.LibPostal
 {
-    public class LibPostalBroker : ILibPostalBroker
+    internal class LibPostalBroker : ILibPostalBroker
     {
         private readonly LibPostalConfiguration libPostalConfiguration;
         private readonly LibpostalAddressParserOptions libpostalAddressParserOptions;
