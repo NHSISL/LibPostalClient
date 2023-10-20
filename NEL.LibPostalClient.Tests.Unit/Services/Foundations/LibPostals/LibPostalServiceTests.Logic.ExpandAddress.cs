@@ -13,13 +13,13 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
     public partial class LibPostalServiceTests
     {
         [Fact]
-        public void ShouldExpandAddressAsync()
+        public async Task ShouldExpandAddressAsync()
         {
             // given
             string randomAddress = GetRandomString();
             string[] inputAddress = new string[] { randomAddress };
             string[] storageAddress = inputAddress;
-            string expectedAddress = storageAddress[0].DeepClone();
+            string[] expectedAddresses = storageAddress.DeepClone();
 
             this.libPostalServiceBrokerMock.Setup(broker =>
                broker.ExpandAddress(randomAddress))
@@ -29,7 +29,7 @@ namespace NEL.LibPostalClient.Tests.Unit.Services.Foundations.LibPostals
             string[] actualAddress = await this.libPostalService.ExpandAddressAsync(randomAddress);
 
             // then
-            actualAddress.Result[0].Should().BeEquivalentTo(expectedAddress);
+            actualAddress.Should().BeEquivalentTo(expectedAddresses);
 
             this.libPostalServiceBrokerMock.Verify(broker =>
                 broker.ExpandAddress(randomAddress),
