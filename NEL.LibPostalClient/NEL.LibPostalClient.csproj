@@ -53,5 +53,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\LibPostalNet\LibPostalNet.csproj" />
 	</ItemGroup>
-
+	
 </Project>

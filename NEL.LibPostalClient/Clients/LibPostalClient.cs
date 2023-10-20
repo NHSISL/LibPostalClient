@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NEL.LibPostalClient.Brokers.LibPostal;
@@ -25,11 +26,11 @@ namespace NEL.LibPostalClient.Clients
             this.libPostalService = host.Services.GetRequiredService<ILibPostalService>();
         }
 
-        public string[] ExpandAddress(string address)
+        public async ValueTask<string[]> ExpandAddressAsync(string address)
         {
             try
             {
-                return this.libPostalService.ExpandAddress(address);
+                return await this.libPostalService.ExpandAddressAsync(address);
             }
             catch (LibPostalValidationException libPostalValidationException)
             {
@@ -57,11 +58,11 @@ namespace NEL.LibPostalClient.Clients
             }
         }
 
-        public List<KeyValuePair<string, string>> ParseAddress(string address)
+        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address)
         {
             try
             {
-                return this.libPostalService.ParseAddress(address);
+                return await this.libPostalService.ParseAddressAsync(address);
             }
             catch (LibPostalValidationException libPostalValidationException)
             {

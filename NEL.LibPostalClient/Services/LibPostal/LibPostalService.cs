@@ -4,11 +4,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NEL.LibPostalClient.Brokers.LibPostal;
 
 namespace NEL.LibPostalClient.Services.LibPostal
 {
-    internal class LibPostalService : ILibPostalService
+    internal partial class LibPostalService : ILibPostalService
     {
         private readonly ILibPostalBroker libPostalBroker;
 
@@ -17,10 +18,15 @@ namespace NEL.LibPostalClient.Services.LibPostal
             this.libPostalBroker = libPostalBroker;
         }
 
-        public string[] ExpandAddress(string address) =>
-            throw new NotImplementedException();
+        public ValueTask<string[]> ExpandAddressAsync(string address) =>
+            TryCatch(async () =>
+            {
+                ValidateArgs(address);
 
-        public List<KeyValuePair<string, string>> ParseAddress(string address) =>
+                return await Task.FromResult(this.libPostalBroker.ExpandAddress(address));
+            });
+
+        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address) =>
             throw new NotImplementedException();
     }
 }
