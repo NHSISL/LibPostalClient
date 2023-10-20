@@ -26,11 +26,11 @@ namespace NEL.LibPostalClient.Clients
             this.libPostalService = host.Services.GetRequiredService<ILibPostalService>();
         }
 
-        public ValueTask<string[]> ExpandAddress(string address)
+        public async ValueTask<string[]> ExpandAddress(string address)
         {
             try
             {
-                return this.libPostalService.ExpandAddress(address);
+                return await this.libPostalService.ExpandAddress(address);
             }
             catch (LibPostalValidationException libPostalValidationException)
             {
@@ -58,11 +58,11 @@ namespace NEL.LibPostalClient.Clients
             }
         }
 
-        public ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address)
+        public async ValueTask<List<KeyValuePair<string, string>>> ParseAddress(string address)
         {
             try
             {
-                return this.libPostalService.ParseAddress(address);
+                return await this.libPostalService.ParseAddress(address);
             }
             catch (LibPostalValidationException libPostalValidationException)
             {
