@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -7,6 +7,10 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<Configurations>Debug;Release;Test;Acceptance</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -40,5 +44,21 @@
 		</None>
 	</ItemGroup>
 
+	<Target Name="PrepLibPostal" BeforeTargets="Build">
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)"></DownloadFile>
+		<Unzip SourceFiles="$(TargetDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(TargetDir)\LibpostalData.zip"></Delete>
+	</Target>
+
+	<Target Name="CleanLibPostal" AfterTargets="Clean">
+		<RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
+	</Target>
+
+	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
+		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)"></DownloadFile>
+		<Unzip SourceFiles="$(PublishDirDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(PublishDir)\LibpostalData.zip"></Delete>
+	</Target>
 
 </Project>

@@ -22,10 +22,10 @@ namespace NEL.LibPostalClient.Brokers.LibPostal
                 this.libPostalConfiguration.DataDirectory);
 
             libpostal.LibpostalSetupParserDatadir(
-                this.libPostalConfiguration.ParserDataDirectory);
+                this.libPostalConfiguration.DataDirectory);
 
             libpostal.LibpostalSetupLanguageClassifierDatadir(
-                this.libPostalConfiguration.LanguageClassifierDataDirectory);
+                this.libPostalConfiguration.DataDirectory);
 
             this.libpostalAddressParserOptions = new LibpostalAddressParserOptions();
             libpostalAddressParserOptions.Country = this.libPostalConfiguration.PaserOptions.Country;
@@ -45,7 +45,6 @@ namespace NEL.LibPostalClient.Brokers.LibPostal
         /// <returns>A </returns>
         public string[] ExpandAddress(string address)
         {
-            LibpostalNormalizeOptions options = libpostal.LibpostalGetDefaultOptions();
             var expansion = libpostal.LibpostalExpandAddress(address, this.libpostalNormalizeOptions);
 
             return expansion.Expansions;
