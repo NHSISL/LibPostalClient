@@ -5,7 +5,7 @@
 using ADotNet.Clients;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV1s;
+using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV3s;
 
 namespace NEL.LibPostalClient.Infrastructure.Services
 {
@@ -18,62 +18,89 @@ namespace NEL.LibPostalClient.Infrastructure.Services
 
         public void GenerateBuildScript()
         {
+            string branchName = "main";
+
             var githubPipeline = new GithubPipeline
             {
-                Name = ".Net",
+                Name = "NEL.LibPostalClient Build",
 
                 OnEvents = new Events
                 {
                     Push = new PushEvent
                     {
-                        Branches = new string[] { "main" }
+                        Branches = new string[] { branchName }
                     },
 
                     PullRequest = new PullRequestEvent
                     {
-                        Branches = new string[] { "main" }
+                        Types = new string[] { "opened", "synchronize", "reopened", "closed" },
+                        Branches = new string[] { branchName }
                     }
                 },
 
-                Jobs = new Jobs
+                EnvironmentVariables = new Dictionary<string, string>
                 {
-                    Build = new BuildJob
+                    { "IS_RELEASE_CANDIDATE", EnvironmentVariables.IsGitHubReleaseCandidate() }
+                },
+
+
+                Jobs = new Dictionary<string, Job>
+                {
                     {
-                        RunsOn = BuildMachines.WindowsLatest,
-
-                        Steps = new List<GithubTask>
+                        "Build",
+                        new Job
                         {
-                            new CheckoutTaskV2
-                            {
-                                Name = "Check Out"
-                            },
+                            RunsOn = BuildMachines.WindowsLatest,
 
-                            new SetupDotNetTaskV1
+                            Steps = new List<GithubTask>
                             {
-                                Name = "Setup Dot Net Version",
-
-                                TargetDotNetVersion = new TargetDotNetVersion
+                                new CheckoutTaskV3
                                 {
-                                    DotNetVersion = "7.0.201",
-                                    IncludePrerelease = false
+                                    Name = "Check Out"
+                                },
+
+                                new SetupDotNetTaskV3
+                                {
+                                    Name = "Setup Dot Net Version",
+
+                                    With = new TargetDotNetVersionV3
+                                    {
+                                        DotNetVersion = "7.0.201"
+                                    }
+                                },
+
+                                new RestoreTask
+                                {
+                                    Name = "Restore"
+                                },
+
+                                new DotNetBuildTask
+                                {
+                                    Name = "Build"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Test"
                                 }
-                            },
-
-                            new RestoreTask
-                            {
-                                Name = "Restore"
-                            },
-
-                            new DotNetBuildTask
-                            {
-                                Name = "Build"
-                            },
-
-                            new TestTask
-                            {
-                                Name = "Test"
                             }
                         }
+                    },
+                    {
+                        "add_tag",
+                        new TagJob(
+                            runsOn: BuildMachines.UbuntuLatest,
+                            dependsOn: "build",
+                            projectRelativePath: "NEL.LibPostalClient/NEL.LibPostalClient.csproj",
+                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
+                            branchName: branchName)
+                    },
+                    {
+                        "publish",
+                        new PublishJob(
+                            runsOn: BuildMachines.UbuntuLatest,
+                            dependsOn: "add_tag",
+                            nugetApiKey: "${{ secrets.NUGET_ACCESS }}")
                     }
                 }
             };
