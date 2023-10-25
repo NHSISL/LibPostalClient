@@ -21,7 +21,6 @@
 		<FileVersion>1.0.0.1</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/NHSISL/LibPostalClient</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/NHSISL/LibPostalClient/</RepositoryUrl>
@@ -41,10 +40,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<None Include="License.txt">
+		<Content Include="License.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
-		</None>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<None Include="Resources\LibPostalClient.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>

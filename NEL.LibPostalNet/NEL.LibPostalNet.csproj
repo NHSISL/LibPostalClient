@@ -11,7 +11,7 @@
 		<Copyright>Copyright (c) NEL ICB</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>LibPostalClient.png</PackageIcon>
+		<PackageIcon>LibPostalNet.png</PackageIcon>
 		<PackageIconUrl />
 		<Version>1.0.0.1</Version>
 		<AssemblyVersion>1.0.0.1</AssemblyVersion>
@@ -48,6 +48,7 @@
 		<Content Include="libpostal.h" />
 		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll" />
 		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll" />
+		<Content Include="NEL.LibPostalNet.targets" PackagePath="build\NEL.LibPostalNet.targets" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -57,16 +58,26 @@
 		<None Update="libpostal-1.so" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="postal.dll">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="License.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="Resources\LibPostalNet.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="CppSharp" Version="1.0.45.22293" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
-	<ItemGroup>
-		<None Update="postal.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
+
 </Project>
