@@ -1,0 +1,26 @@
+﻿﻿<Project>
+	<ItemGroup>
+		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\windows\libpostal-1.dll" />
+		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\linux_x86_64\libpostal-1.so" />
+	</ItemGroup>
+	<Target Name="PrepLibPostal" BeforeTargets="Build">
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)\App_Data"></DownloadFile>
+		<Unzip SourceFiles="$(TargetDir)\App_Data\libpostal.zip" DestinationFolder="$(TargetDir)\App_Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(TargetDir)\App_Data\libpostal.zip"></Delete>
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+	</Target>
+	<Target Name="CleanLibPostal" AfterTargets="Clean">
+		<RemoveDir Directories="$(TargetDir)\App_Data\libpostal"></RemoveDir>
+		<Delete Files="$(TargetDir)\libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'"/>
+		<Delete Files="$(TargetDir)\libpostal-1.so" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+	</Target>
+	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
+		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)\App_Data"></DownloadFile>
+		<Unzip SourceFiles="$(PublishDirDir)\App_Data\libpostal.zip" DestinationFolder="$(TargetDir)\App_Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(PublishDir)\App_Data\libpostal.zip"></Delete>
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)"/>
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)"/>
+	</Target>
+</Project>

@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿// ---------------------------------------------------------------
+// Copyright (c) North East London ICB. All rights reserved.
+// ---------------------------------------------------------------
+
+using System.Threading.Tasks;
 using FluentAssertions;
-using NEL.LibPostalClient.Models.Brokers.LibPostal;
 using Xunit;
 
 namespace NEL.LibPostalClient.Tests.Acceptance
@@ -12,8 +15,15 @@ namespace NEL.LibPostalClient.Tests.Acceptance
         {
             //Given
             string inputAddress = "10 Downing Str, Westminster, London, SW1A2AA, UK";
-            string[] expectedResult = { "10 downing str westminster london sw1a2aa uk", 
-                "10 downing str westminster london sw 1a2aa uk" };
+            string[] expectedResult =
+                {
+                    "10 downing street westminster london sw1a2aa uk",
+                    "10 downing strata unit westminster london sw1a2aa uk",
+                    "10 downing street westminster london southwest 1a2aa uk",
+                    "10 downing street westminster london sw 1a2aa uk",
+                    "10 downing strata unit westminster london southwest 1a2aa uk",
+                    "10 downing strata unit westminster london sw 1a2aa uk"
+                };
 
             //When
             string[] actualResult = await this.libPostalClient.ExpandAddressAsync(inputAddress);

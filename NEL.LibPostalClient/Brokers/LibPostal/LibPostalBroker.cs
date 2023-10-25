@@ -22,10 +22,10 @@ namespace NEL.LibPostalClient.Brokers.LibPostal
                 this.libPostalConfiguration.DataDirectory);
 
             libpostal.LibpostalSetupParserDatadir(
-                this.libPostalConfiguration.ParserDataDirectory);
+                this.libPostalConfiguration.DataDirectory);
 
             libpostal.LibpostalSetupLanguageClassifierDatadir(
-                this.libPostalConfiguration.LanguageClassifierDataDirectory);
+                this.libPostalConfiguration.DataDirectory);
 
             this.libpostalAddressParserOptions = new LibpostalAddressParserOptions();
             libpostalAddressParserOptions.Country = this.libPostalConfiguration.PaserOptions.Country;

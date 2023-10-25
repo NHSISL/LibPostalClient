@@ -18,14 +18,12 @@ namespace NEL.LibPostalClient.Tests.Acceptance
 
             string assembly = Assembly.GetExecutingAssembly().Location;
             string dataFolderPath = Path.Combine(Path.GetDirectoryName(assembly), @"App_Data\libpostal");
-            string parserFolderPath = Path.Combine(dataFolderPath, @"parser");
-            string languageClassifierFolderPath = Path.Combine(dataFolderPath, @"language_classifier");
 
             var config = new LibPostalConfiguration
             {
                 DataDirectory = dataFolderPath,
-                ParserDataDirectory = parserFolderPath,
-                LanguageClassifierDataDirectory = languageClassifierFolderPath,
+                ParserDataDirectory = dataFolderPath,
+                LanguageClassifierDataDirectory = dataFolderPath,
                 PaserOptions = new ParserOptions
                 {
                     Country = "GB",
