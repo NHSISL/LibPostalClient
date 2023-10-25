@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Title>LibPostal Client</Title>
@@ -18,14 +20,24 @@
 		<FileVersion>1.0.0.0</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/TowerHamletsCCG/MeshClient</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/NHSISL/LibPostalClient</PackageProjectUrl>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
-		<RepositoryUrl>https://github.com/TowerHamletsCCG/MeshClient</RepositoryUrl>
+		<RepositoryUrl>https://github.com/NHSISL/LibPostalClient/</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
 		<PackageTags>.NET Client LibPostal</PackageTags>
 		<PackageReleaseNotes>A .NET Client to parse and normalise unstructured adrresses</PackageReleaseNotes>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Update="libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="libpostal-1.so" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<None Include="License.txt">
 			<Pack>True</Pack>
@@ -50,8 +62,4 @@
 		<PackageReference Include="Xeption" Version="2.6.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\LibPostalNet\LibPostalNet.csproj" />
-	</ItemGroup>
-	
 </Project>

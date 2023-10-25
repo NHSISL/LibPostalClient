@@ -92,6 +92,7 @@ namespace NEL.LibPostalClient.Clients
 
         private static IHost RegisterServices(LibPostalConfiguration config)
         {
+            ValidateConfiguration(config);
             IHostBuilder builder = Host.CreateDefaultBuilder();
 
             builder.ConfigureServices(configuration =>
@@ -104,6 +105,48 @@ namespace NEL.LibPostalClient.Clients
             IHost host = builder.Build();
 
             return host;
+        }
+
+        private static void ValidateConfiguration(LibPostalConfiguration config)
+        {
+            if (config is null)
+            {
+                throw new LibPostalClientConfigurationException(
+                    message: "LibPostal client configuration is not set.");
+            }
+
+            Validate(
+                (Rule: IsInvalid(config.DataDirectory), Parameter: nameof(LibPostalConfiguration.DataDirectory)),
+
+                (Rule: IsInvalid(config.ParserDataDirectory),
+                    Parameter: nameof(LibPostalConfiguration.ParserDataDirectory)),
+
+                (Rule: IsInvalid(config.LanguageClassifierDataDirectory),
+                    Parameter: nameof(LibPostalConfiguration.LanguageClassifierDataDirectory)));
+        }
+
+        private static dynamic IsInvalid(string text) => new
+        {
+            Condition = string.IsNullOrWhiteSpace(text),
+            Message = "Text is required"
+        };
+
+        private static void Validate(params (dynamic Rule, string Parameter)[] validations)
+        {
+            var invalidAddressException = new LibPostalClientConfigurationException(
+                message: "Invalid LibPostal client configuration. Please correct the errors and try again.");
+
+            foreach ((dynamic rule, string parameter) in validations)
+            {
+                if (rule.Condition)
+                {
+                    invalidAddressException.UpsertDataList(
+                        key: parameter,
+                        value: rule.Message);
+                }
+            }
+
+            invalidAddressException.ThrowIfContainsErrors();
         }
     }
 }

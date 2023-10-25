@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿// ---------------------------------------------------------------
+// Copyright (c) North East London ICB. All rights reserved.
+// ---------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using CppSharp.Types.Std;
 using FluentAssertions;
-using NEL.LibPostalClient.Models.Brokers.LibPostal;
 using Xunit;
 
 namespace NEL.LibPostalClient.Tests.Acceptance
@@ -23,7 +25,7 @@ namespace NEL.LibPostalClient.Tests.Acceptance
             //    "10 downing str westminster london sw 1a2aa uk" };
 
             //When
-            List<KeyValuePair<string, string>> actualResult = 
+            List<KeyValuePair<string, string>> actualResult =
                 await this.libPostalClient.ParseAddressAsync(inputAddress);
 
             //Then

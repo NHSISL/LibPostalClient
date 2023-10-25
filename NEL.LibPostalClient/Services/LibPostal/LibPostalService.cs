@@ -30,7 +30,7 @@ namespace NEL.LibPostalClient.Services.LibPostal
              {
                  ValidateArgs(address);
 
-                 return await ValueTask.FromResult(libPostalBroker.ParseAddress(address));
+                 return await Task.FromResult(libPostalBroker.ParseAddress(address));
              });
     }
 }

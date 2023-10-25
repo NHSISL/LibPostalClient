@@ -45,7 +45,6 @@ namespace NEL.LibPostalClient.Brokers.LibPostal
         /// <returns>A </returns>
         public string[] ExpandAddress(string address)
         {
-            LibpostalNormalizeOptions options = libpostal.LibpostalGetDefaultOptions();
             var expansion = libpostal.LibpostalExpandAddress(address, this.libpostalNormalizeOptions);
 
             return expansion.Expansions;
