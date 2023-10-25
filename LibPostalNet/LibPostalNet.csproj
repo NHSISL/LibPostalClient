@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
@@ -25,7 +25,7 @@
     <Content Include="libpostal.h" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CppSharp" Version="1.0.45.22293" />
+    <PackageReference Include="CppSharp" Version="1.1.5.3168" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
