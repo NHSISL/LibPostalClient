@@ -17,9 +17,9 @@
 		<AssemblyVersion>1.0.0.1</AssemblyVersion>
 		<FileVersion>1.0.0.1</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageLicenseExpression></PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/NHSISL/LibPostalClient</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/NHSISL/LibPostalClient</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/NHSISL/LibPostalClient/</RepositoryUrl>
 		<RepositoryType>Github</RepositoryType>
 		<PackageTags>.NET Client LibPostal</PackageTags>
@@ -68,6 +68,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
 		<None Include="Resources\LibPostalNet.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
@@ -79,5 +83,5 @@
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
-
+	
 </Project>

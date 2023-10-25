@@ -17,7 +17,7 @@ namespace NEL.LibPostalClient.Tests.Acceptance
         {
 
             string assembly = Assembly.GetExecutingAssembly().Location;
-            string dataFolderPath = Path.Combine(Path.GetDirectoryName(assembly), @"Data\libpostal");
+            string dataFolderPath = Path.Combine(Path.GetDirectoryName(assembly), @"Data");
 
             var config = new LibPostalConfiguration
             {
