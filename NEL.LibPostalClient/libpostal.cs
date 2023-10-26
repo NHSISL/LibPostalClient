@@ -104,7 +104,7 @@ namespace LibPostalNet
             internal byte roman_numerals;
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "??0libpostal_normalize_options@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
         }
@@ -494,7 +494,7 @@ namespace LibPostalNet
             internal global::System.IntPtr labels;
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "??0libpostal_address_parser_response@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
         }
@@ -627,7 +627,7 @@ namespace LibPostalNet
             internal global::System.IntPtr country;
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "??0libpostal_address_parser_options@@QEAA@AEBU0@@Z")]
             internal static extern global::System.IntPtr cctor(global::System.IntPtr instance, global::System.IntPtr _0);
         }
@@ -741,83 +741,83 @@ namespace LibPostalNet
         public partial struct __Internal
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_get_default_options")]
             internal static extern void LibpostalGetDefaultOptions(global::System.IntPtr @return);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_expand_address")]
             internal static extern sbyte** LibpostalExpandAddress([MarshalAs(UnmanagedType.LPUTF8Str)] string input, global::LibPostalNet.LibpostalNormalizeOptions.__Internal options, ulong* n);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_expansion_array_destroy")]
             internal static extern void LibpostalExpansionArrayDestroy(sbyte** expansions, ulong n);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_address_parser_response_destroy")]
             internal static extern void LibpostalAddressParserResponseDestroy(global::System.IntPtr self);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_get_address_parser_default_options")]
             internal static extern void LibpostalGetAddressParserDefaultOptions(global::System.IntPtr @return);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_parse_address")]
             internal static extern global::System.IntPtr LibpostalParseAddress([MarshalAs(UnmanagedType.LPUTF8Str)] string address, global::LibPostalNet.LibpostalAddressParserOptions.__Internal options);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetup();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup_datadir")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetupDatadir([MarshalAs(UnmanagedType.LPUTF8Str)] string datadir);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_teardown")]
             internal static extern void LibpostalTeardown();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup_parser")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetupParser();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup_parser_datadir")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetupParserDatadir([MarshalAs(UnmanagedType.LPUTF8Str)] string datadir);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_teardown_parser")]
             internal static extern void LibpostalTeardownParser();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup_language_classifier")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetupLanguageClassifier();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_setup_language_classifier_datadir")]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool LibpostalSetupLanguageClassifierDatadir([MarshalAs(UnmanagedType.LPUTF8Str)] string datadir);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("postal", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("libpostal-1", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint = "libpostal_teardown_language_classifier")]
             internal static extern void LibpostalTeardownLanguageClassifier();
         }

@@ -66,9 +66,6 @@
 		<None Update="libpostal-1.so" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="postal.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="Data\**\*.*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
