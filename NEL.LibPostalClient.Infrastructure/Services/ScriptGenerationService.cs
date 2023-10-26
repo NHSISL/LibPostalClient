@@ -50,7 +50,7 @@ namespace NEL.LibPostalClient.Infrastructure.Services
                         "Build",
                         new Job
                         {
-                            RunsOn = BuildMachines.WindowsLatest,
+                            RunsOn = BuildMachines.UbuntuLatest,
 
                             Steps = new List<GithubTask>
                             {
