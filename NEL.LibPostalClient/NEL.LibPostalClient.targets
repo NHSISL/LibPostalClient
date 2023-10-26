@@ -6,9 +6,9 @@
 	</ItemGroup>
 
 	<Target Name="PrepLibPostal" BeforeTargets="Build">
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)\Data"></DownloadFile>
-		<Unzip SourceFiles="$(TargetDir)\Data\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
-		<Delete Files="$(TargetDir)\Data\LibpostalData.zip"></Delete>
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)"></DownloadFile>
+		<Unzip SourceFiles="$(TargetDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(TargetDir)\LibpostalData.zip"></Delete>
 		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
 		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
 	</Target>
@@ -21,9 +21,9 @@
 
 	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
 		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)\Data"></DownloadFile>
-		<Unzip SourceFiles="$(PublishDirDir)\Data\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
-		<Delete Files="$(PublishDir)\Data\LibpostalData.zip"></Delete>
+		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)"></DownloadFile>
+		<Unzip SourceFiles="$(PublishDirDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Delete Files="$(PublishDir)\LibpostalData.zip"></Delete>
 		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)"/>
 		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)"/>
 	</Target>

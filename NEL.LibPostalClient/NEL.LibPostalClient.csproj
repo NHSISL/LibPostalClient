@@ -16,9 +16,9 @@
 
 		<PackageIcon>LibPostalClient.png</PackageIcon>
 		<PackageIconUrl />
-		<Version>1.0.0.2</Version>
-		<AssemblyVersion>1.0.0.2</AssemblyVersion>
-		<FileVersion>1.0.0.2</FileVersion>
+		<Version>1.0.0.3</Version>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
+		<FileVersion>1.0.0.3</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
@@ -76,7 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Data\language_classifier\.gitignore" />
 		<None Include="License.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
