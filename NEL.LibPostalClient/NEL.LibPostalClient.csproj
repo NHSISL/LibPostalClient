@@ -76,7 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Data\language_classifier\.gitignore" />
 		<None Include="License.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
