@@ -1,4 +1,4 @@
-﻿﻿<Project>
+﻿<Project>
 
 	<ItemGroup>
 		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\windows\libpostal-1.dll" />
