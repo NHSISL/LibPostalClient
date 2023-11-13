@@ -36,13 +36,15 @@ namespace NEL.LibPostalClient.Clients
             {
                 throw new LibPostalClientValidationException(
                     message: "LibPostal client validation error(s) occurred, fix the error(s) and try again.",
-                    libPostalValidationException.InnerException as Xeption);
+                    innerException: libPostalValidationException.InnerException as Xeption,
+                    data: libPostalValidationException.InnerException.Data);
             }
             catch (LibPostalDependencyValidationException libPostalDependencyValidationException)
             {
                 throw new LibPostalClientValidationException(
                     message: "LibPostal client validation error(s) occurred, fix the error(s) and try again.",
-                    libPostalDependencyValidationException.InnerException as Xeption);
+                    libPostalDependencyValidationException.InnerException as Xeption,
+                    data: libPostalDependencyValidationException.InnerException.Data);
             }
             catch (LibPostalDependencyException libPostalDependencyException)
             {
