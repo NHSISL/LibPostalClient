@@ -54,8 +54,12 @@
 
 	<ItemGroup>
 		<Content Include="libpostal.h" />
-		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll" />
-		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll" />
+		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="NEL.LibPostalClient.targets" PackagePath="build\NEL.LibPostalClient.targets" />
 	</ItemGroup>
 
