@@ -16,9 +16,9 @@
 
 		<PackageIcon>LibPostalClient.png</PackageIcon>
 		<PackageIconUrl />
-		<Version>1.0.0.6</Version>
-		<AssemblyVersion>1.0.0.6</AssemblyVersion>
-		<FileVersion>1.0.0.6</FileVersion>
+		<Version>1.0.0.7</Version>
+		<AssemblyVersion>1.0.0.7</AssemblyVersion>
+		<FileVersion>1.0.0.7</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
