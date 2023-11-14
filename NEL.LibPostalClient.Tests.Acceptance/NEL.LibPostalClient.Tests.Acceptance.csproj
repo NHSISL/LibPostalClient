@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -44,21 +44,35 @@
 		</None>
 	</ItemGroup>
 
-	<Target Name="PrepLibPostal" BeforeTargets="Build">
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)"></DownloadFile>
-		<Unzip SourceFiles="$(TargetDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
-		<Delete Files="$(TargetDir)\LibpostalData.zip"></Delete>
-	</Target>
-
 	<Target Name="CleanLibPostal" AfterTargets="Clean">
-		<RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
+		<RemoveDir Directories="$(TargetDir)Data\libpostal"></RemoveDir>
+		<Delete Files="$(TargetDir)LibpostalData.zip" />
+		<Delete Files="$(TargetDir)libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'" />
+		<Delete Files="$(TargetDir)libpostal-1.so" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'" />
 	</Target>
 
-	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
-		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)"></DownloadFile>
-		<Unzip SourceFiles="$(PublishDirDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
-		<Delete Files="$(PublishDir)\LibpostalData.zip"></Delete>
+	<Target Name="PrepLibPostal" BeforeTargets="Build">
+		<Message Importance="high" Text="Checking for LibpostalData.zip" />
+
+		<DownloadFile 
+			SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" 
+			DestinationFolder="$(TargetDir)" 
+			Condition="!Exists('$(TargetDir)\LibpostalData.zip') == 'True'" />
+		
+	</Target>
+
+	<Target Name="UnzipLibPostal" AfterTargets="PrepLibPostal">
+		<Message Importance="high" Text="Unzipping LibpostalData.zip" />
+
+		<Unzip
+			SourceFiles="$(TargetDir)\LibpostalData.zip"
+			DestinationFolder="$(TargetDir)\Data"
+			OverwriteReadOnlyFiles="true"
+			Condition="Exists('$(TargetDir)\LibpostalData.zip') == 'True'"
+			 />
+
+		<Message Importance="high" Text="Unzipped LibpostalData.zip" />
+
 	</Target>
 
 </Project>
