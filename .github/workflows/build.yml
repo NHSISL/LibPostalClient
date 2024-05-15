@@ -1,4 +1,4 @@
-name: NEL.LibPostalClient Build
+name: Build
 on:
   push:
     branches:
@@ -73,7 +73,7 @@ jobs:
 
         sudo apt-get install xmlstarlet
 
-        version_number=$(xmlstarlet sel -t -v "//Version" -n NEL.LibPostalClient/NEL.LibPostalClient.csproj)
+        version_number=$(xmlstarlet sel -t -v "//Version" -n NHSISL.LibPostalClient/NHSISL.LibPostalClient.csproj)
 
         echo "$version_number"
 
@@ -92,7 +92,7 @@ jobs:
 
         sudo apt-get install xmlstarlet
 
-        package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n NEL.LibPostalClient/NEL.LibPostalClient.csproj)
+        package_release_notes=$(xmlstarlet sel -t -v "//PackageReleaseNotes" -n NHSISL.LibPostalClient/NHSISL.LibPostalClient.csproj)
 
         echo "$package_release_notes"
 
