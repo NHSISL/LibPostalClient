@@ -55,8 +55,8 @@
 
 	<ItemGroup>
 		<Content Include="libpostal.h" />
-		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll"/>
-		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll"/>
+		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll" />
+		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll" />
 		<Content Include="NHSISL.LibPostalClient.targets" PackagePath="build\NHSISL.LibPostalClient.targets" />
 	</ItemGroup>
 
@@ -99,8 +99,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Xeption" Version="2.6.0" />
 	</ItemGroup>
