@@ -48,9 +48,9 @@
 
 	<Target Name="CopyLibPostalFiles" BeforeTargets="Build">
 		<Message Importance="high" Text="Copying libpostal library files to output directory" />
-		<Copy SourceFiles="@(Headers)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+		<Copy SourceFiles="@(Headers)" DestinationFolder="$(TargetDir)" />
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'" />
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'" />
 	</Target>
 	
 </Project>
