@@ -27,7 +27,7 @@
 		<RepositoryUrl>https://github.com/NHSISL/LibPostalClient/</RepositoryUrl>
 		<RepositoryType>GitHub</RepositoryType>
 		<PackageTags>.NET Client LibPostal TheStandard</PackageTags>
-		<PackageReleaseNotes>A .NET Client to parse and normalize unstructured addresses</PackageReleaseNotes>
+		<PackageReleaseNotes> A .NET Client to parse and normalize unstructured addresses </PackageReleaseNotes>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
