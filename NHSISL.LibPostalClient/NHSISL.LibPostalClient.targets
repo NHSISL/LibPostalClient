@@ -1,8 +1,8 @@
 ﻿<Project>
 
 	<ItemGroup>
-		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\windows\libpostal-1.dll" />
-		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\linux_x86_64\libpostal-1.so" />
+		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\windows\libpostal-1.dll" />
+		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\linux_x86_64\libpostal-1.dll" />
 	</ItemGroup>
 
 	<Target Name="CleanLibPostal" AfterTargets="Clean">

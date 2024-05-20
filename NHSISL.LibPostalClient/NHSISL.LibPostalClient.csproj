@@ -55,8 +55,8 @@
 
 	<ItemGroup>
 		<Content Include="libpostal.h" />
-		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll" />
-		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll" />
+		<Content Include="libpostal-1.dll" PackagePath="contentFiles/any/net8.0/windows/libpostal-1.dll" />
+		<Content Include="libpostal-1.so" PackagePath="contentFiles/any/net8.0/linux_x86_64/libpostal-1.dll" />
 		<Content Include="NHSISL.LibPostalClient.targets" PackagePath="build\NHSISL.LibPostalClient.targets" />
 	</ItemGroup>
 
