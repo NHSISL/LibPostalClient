@@ -2,7 +2,9 @@
 
 	<ItemGroup>
 		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\windows\libpostal-1.dll" />
-		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\linux_x86_64\libpostal-1.dll" />
+		<WindowsHeaders Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\windows\libpostal.h" />
+		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\linux_x86_64\libpostal-1.so" />
+		<LinuxHeaders Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\linux_x86_64\libpostal.h" />
 	</ItemGroup>
 
 	<Target Name="CleanLibPostal" AfterTargets="Clean">
@@ -45,4 +47,12 @@
 		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)"/>
 	</Target>
 
+	<Target Name="CopyLibPostalFiles" BeforeTargets="Build">
+		<Message Importance="high" Text="Copying libpostal library files to output directory" />
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
+		<Copy SourceFiles="@(WindowsHeaders)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+		<Copy SourceFiles="@(LinuxHeaders)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+	</Target>
+	
 </Project>
