@@ -11,5 +11,6 @@ namespace NHSISL.LibPostalClient.Services.LibPostal
     {
         ValueTask<string[]> ExpandAddressAsync(string address);
         ValueTask<List<KeyValuePair<string, string>>> ParseAddressAsync(string address);
+        List<KeyValuePair<string, string>> DeduplicateKeys(List<KeyValuePair<string, string>> inputList);
     }
 }
