@@ -26,7 +26,7 @@ namespace NHSISL.LibPostalClient.Tests.Acceptance
                 };
 
             //When
-            string[] actualResult = await this.libPostalClient.ExpandAddressAsync(inputAddress);
+            string[] actualResult = await this.libPostalFixtureBroker.libPostalClient.ExpandAddressAsync(inputAddress);
 
             //Then
             actualResult.Should().BeEquivalentTo(expectedResult);

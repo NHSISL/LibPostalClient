@@ -15,7 +15,7 @@ namespace NHSISL.LibPostalClient.Tests.Acceptance
         public async Task ShouldParseAddressAsync()
         {
             //Given
-            string inputAddress = "10 downing str westminster london sw1a2aa uk";
+            string inputAddress = "10 downing str, westminster, london, sw1a2aa, uk";
 
             List<KeyValuePair<string, string>> expectedResult = new List<KeyValuePair<string, string>>
             {
@@ -29,11 +29,34 @@ namespace NHSISL.LibPostalClient.Tests.Acceptance
 
             //When
             List<KeyValuePair<string, string>> actualResult =
-                await this.libPostalClient.ParseAddressAsync(inputAddress);
+                await this.libPostalFixtureBroker.libPostalClient.ParseAddressAsync(inputAddress);
 
             //Then
             actualResult.Should().BeEquivalentTo(expectedResult);
         }
 
+        [Fact]
+        public async Task ShouldParseAddressWithDuplicateKeysAsync()
+        {
+            //Given
+            string inputAddress = "7 finley court 168 foxley lane purley cr8 3nf";
+
+            List<KeyValuePair<string, string>> expectedResult = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("house_number_1", "7"),
+                new KeyValuePair<string, string>("house", "finley court"),
+                new KeyValuePair<string, string>("house_number_2", "168"),
+                new KeyValuePair<string, string>("road", "foxley lane"),
+                new KeyValuePair<string, string>("city", "purley"),
+                new KeyValuePair<string, string>("postcode", "cr8 3nf"),
+            };
+
+            //When
+            List<KeyValuePair<string, string>> actualResult =
+                await this.libPostalFixtureBroker.libPostalClient.ParseAddressAsync(inputAddress);
+
+            //Then
+            actualResult.Should().BeEquivalentTo(expectedResult);
+        }
     }
 }
