@@ -40,7 +40,7 @@
 	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
 		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
 		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)"></DownloadFile>
-		<Unzip SourceFiles="$(PublishDirDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Unzip SourceFiles="$(PublishDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
 		<Delete Files="$(PublishDir)\LibpostalData.zip"></Delete>
 		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)"/>
 		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)"/>
