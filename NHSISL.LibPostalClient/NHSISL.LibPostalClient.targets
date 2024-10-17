@@ -45,7 +45,7 @@
 		<DownloadFile
 			SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip"
 			DestinationFolder="$(PublishDir)" />
-		<Unzip SourceFiles="$(PublishDir)\LibpostalData.zip" DestinationFolder="$(TargetDir)\Data"
+		<Unzip SourceFiles="$(PublishDir)\LibpostalData.zip" DestinationFolder="$(PublishDir)\Data"
 			OverwriteReadOnlyFiles="true" />
 		<Delete Files="$(PublishDir)\LibpostalData.zip" />
 		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)" />
