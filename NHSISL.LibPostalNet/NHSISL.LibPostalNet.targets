@@ -1,26 +1,37 @@
 ﻿﻿<Project>
 	<ItemGroup>
-		<WindowsNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\windows\libpostal-1.dll" />
-		<LinuxNativeFiles Include="$(MSBuildThisFileDirectory)\..\contentFiles\linux_x86_64\libpostal-1.so" />
+		<WindowsNativeFiles
+			Include="$(MSBuildThisFileDirectory)\..\contentFiles\windows\libpostal-1.dll" />
+		<LinuxNativeFiles
+			Include="$(MSBuildThisFileDirectory)\..\contentFiles\linux_x86_64\libpostal-1.so" />
 	</ItemGroup>
 	<Target Name="PrepLibPostal" BeforeTargets="Build">
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(TargetDir)\Data"></DownloadFile>
-		<Unzip SourceFiles="$(TargetDir)\Data\libpostal.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<DownloadFile
+			SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip"
+			DestinationFolder="$(TargetDir)\Data"></DownloadFile>
+		<Unzip SourceFiles="$(TargetDir)\Data\libpostal.zip" DestinationFolder="$(TargetDir)\Data"
+			OverwriteReadOnlyFiles="true"></Unzip>
 		<Delete Files="$(TargetDir)\Data\libpostal.zip"></Delete>
-		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(TargetDir)"
+			Condition="'$(OS)' == 'Windows_NT'" />
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(TargetDir)"
+			Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'" />
 	</Target>
 	<Target Name="CleanLibPostal" AfterTargets="Clean">
 		<RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
-		<Delete Files="$(TargetDir)\libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'"/>
-		<Delete Files="$(TargetDir)\libpostal-1.so" Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"/>
+		<Delete Files="$(TargetDir)\libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'" />
+		<Delete Files="$(TargetDir)\libpostal-1.so"
+			Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'" />
 	</Target>
 	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
-		<Message Importance="high" Text="Writing to folder $(PublishDir)"/>
-		<DownloadFile SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip" DestinationFolder="$(PublishDir)\Data"></DownloadFile>
-		<Unzip SourceFiles="$(PublishDirDir)\Data\libpostal.zip" DestinationFolder="$(TargetDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
+		<Message Importance="high" Text="Writing to folder $(PublishDir)" />
+		<DownloadFile
+			SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip"
+			DestinationFolder="$(PublishDir)\Data"></DownloadFile>
+		<Unzip SourceFiles="$(PublishDir)\Data\libpostal.zip"
+			DestinationFolder="$(PublishDir)\Data" OverwriteReadOnlyFiles="true"></Unzip>
 		<Delete Files="$(PublishDir)\Data\libpostal.zip"></Delete>
-		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)"/>
-		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)"/>
+		<Copy SourceFiles="@(WindowsNativeFiles)" DestinationFolder="$(PublishDir)" />
+		<Copy SourceFiles="@(LinuxNativeFiles)" DestinationFolder="$(PublishDir)" />
 	</Target>
 </Project>
