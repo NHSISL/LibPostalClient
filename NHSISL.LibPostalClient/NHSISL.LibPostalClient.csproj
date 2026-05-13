@@ -102,7 +102,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-		<PackageReference Include="Xeption" Version="2.8.0" />
+		<PackageReference Include="Xeption" Version="2.9.0" />
 	</ItemGroup>
 
 </Project>
