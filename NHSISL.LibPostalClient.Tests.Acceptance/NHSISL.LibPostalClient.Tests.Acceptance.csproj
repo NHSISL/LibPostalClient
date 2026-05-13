@@ -16,7 +16,7 @@
 	<ItemGroup>
 		<PackageReference Include="CompareNETObjects" Version="4.84.0" />
 		<PackageReference Include="DeepCloner" Version="0.10.4" />
-		<PackageReference Include="FluentAssertions" Version="7.2.2" />
+		<PackageReference Include="FluentAssertions" Version="[7.2.2]" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.8" />
 
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
