@@ -20,7 +20,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.8" />
 
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
 		<PackageReference Include="CleanMoq" Version="42.42.42" />
 		<PackageReference Include="Tynamix.ObjectFiller" Version="1.5.9" />
 		<PackageReference Include="xunit" Version="2.9.2" />
