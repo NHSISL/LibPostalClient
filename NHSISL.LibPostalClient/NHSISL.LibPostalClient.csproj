@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>disable</ImplicitUsings>
@@ -55,8 +55,8 @@
 
 	<ItemGroup>
 		<Content Include="libpostal.h" />
-		<Content Include="libpostal-1.dll" PackagePath="contentFiles/any/net8.0/windows/libpostal-1.dll" />
-		<Content Include="libpostal-1.so" PackagePath="contentFiles/any/net8.0/linux_x86_64/libpostal-1.so" />
+		<Content Include="libpostal-1.dll" PackagePath="contentFiles/any/net10.0/windows/libpostal-1.dll" />
+		<Content Include="libpostal-1.so" PackagePath="contentFiles/any/net10.0/linux_x86_64/libpostal-1.so" />
 		<Content Include="NHSISL.LibPostalClient.targets" PackagePath="build\NHSISL.LibPostalClient.targets" />
 	</ItemGroup>
 
