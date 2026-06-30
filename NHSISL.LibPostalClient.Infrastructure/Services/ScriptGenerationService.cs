@@ -5,7 +5,7 @@
 using ADotNet.Clients;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
-using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV3s;
+using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV5s;
 
 namespace NHSISL.LibPostalClient.Infrastructure.Services
 {
@@ -54,16 +54,16 @@ namespace NHSISL.LibPostalClient.Infrastructure.Services
 
                             Steps = new List<GithubTask>
                             {
-                                new CheckoutTaskV3
+                                new CheckoutTaskV5
                                 {
                                     Name = "Check Out"
                                 },
 
-                                new SetupDotNetTaskV3
+                                new SetupDotNetTaskV5
                                 {
                                     Name = "Setup Dot Net Version",
 
-                                    With = new TargetDotNetVersionV3
+                                    With = new TargetDotNetVersionV5
                                     {
                                         DotNetVersion = "8.0.302"
                                     }
@@ -88,7 +88,7 @@ namespace NHSISL.LibPostalClient.Infrastructure.Services
                     },
                     {
                         "add_tag",
-                        new TagJob(
+                        new TagJobV2(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "build",
                             projectRelativePath: "NHSISL.LibPostalClient/NHSISL.LibPostalClient.csproj",
@@ -97,9 +97,10 @@ namespace NHSISL.LibPostalClient.Infrastructure.Services
                     },
                     {
                         "publish",
-                        new PublishJob(
+                        new PublishJobV4(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "add_tag",
+                            dotNetVersion: "8.0.302",
                             nugetApiKey: "${{ secrets.NUGET_ACCESS }}")
                     }
                 }
