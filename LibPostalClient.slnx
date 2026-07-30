@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Acceptance" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="Test" />
+  </Configurations>
+  <Project Path="NHSISL.LibPostalClient.Infrastructure/NHSISL.LibPostalClient.Infrastructure.csproj">
+    <BuildType Solution="Acceptance|*" Project="Release" />
+    <BuildType Solution="Test|*" Project="Release" />
+  </Project>
+  <Project Path="NHSISL.LibPostalClient.Tests.Acceptance/NHSISL.LibPostalClient.Tests.Acceptance.csproj" />
+  <Project Path="NHSISL.LibPostalClient.Tests.Unit/NHSISL.LibPostalClient.Tests.Unit.csproj" />
+  <Project Path="NHSISL.LibPostalClient/NHSISL.LibPostalClient.csproj">
+    <BuildType Solution="Acceptance|*" Project="Release" />
+    <BuildType Solution="Test|*" Project="Release" />
+  </Project>
+</Solution>
