@@ -9,8 +9,8 @@
 	</ItemGroup>
 
 	<Target Name="CleanLibPostal" AfterTargets="Clean" Condition="'$(LibPostalAutoDownload)' == 'true'">
-    <Message Importance="high" Text="Cleaning files..." />
-    <RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
+		<Message Importance="high" Text="Cleaning files..." />
+		<RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
 		<Delete Files="$(TargetDir)\LibpostalData.zip" />
 		<Delete Files="$(TargetDir)\libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'" />
 		<Delete Files="$(TargetDir)\libpostal-1.so"
