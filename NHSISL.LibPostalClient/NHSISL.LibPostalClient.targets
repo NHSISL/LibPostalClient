@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
 	<ItemGroup>
 		<Headers Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\libpostal.h" />
@@ -8,8 +8,9 @@
 			Include="$(MSBuildThisFileDirectory)\..\contentFiles\any\net8.0\linux_x86_64\libpostal-1.so" />
 	</ItemGroup>
 
-	<Target Name="CleanLibPostal" AfterTargets="Clean">
-		<RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
+	<Target Name="CleanLibPostal" AfterTargets="Clean" Condition="'$(LibPostalAutoDownload)' == 'true'">
+    <Message Importance="high" Text="Cleaning files..." />
+    <RemoveDir Directories="$(TargetDir)\Data\libpostal"></RemoveDir>
 		<Delete Files="$(TargetDir)\LibpostalData.zip" />
 		<Delete Files="$(TargetDir)\libpostal-1.dll" Condition="'$(OS)' == 'Windows_NT'" />
 		<Delete Files="$(TargetDir)\libpostal-1.so"
@@ -18,26 +19,21 @@
 
 	<Target Name="PrepLibPostal" BeforeTargets="Build">
 		<Message Importance="high" Text="Checking for LibpostalData.zip" />
-
 		<DownloadFile
 			SourceUrl="https://github.com/NHSISL/LibPostalClient/releases/download/LibPostalData/LibpostalData.zip"
 			DestinationFolder="$(TargetDir)"
 			Condition="!Exists('$(TargetDir)\LibpostalData.zip') == 'True'" />
-
 	</Target>
 
 	<Target Name="UnzipLibPostal" AfterTargets="PrepLibPostal">
 		<Message Importance="high" Text="Unzipping LibpostalData.zip" />
-
 		<Unzip
 			SourceFiles="$(TargetDir)\LibpostalData.zip"
 			DestinationFolder="$(TargetDir)\Data"
 			OverwriteReadOnlyFiles="true"
 			Condition="Exists('$(TargetDir)\LibpostalData.zip') == 'True'"
 		/>
-
 		<Message Importance="high" Text="Unzipped LibpostalData.zip" />
-
 	</Target>
 
 	<Target Name="PrepLibPostalPublish" AfterTargets="Publish">
