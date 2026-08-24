@@ -15,4 +15,8 @@
     <BuildType Solution="Acceptance|*" Project="Release" />
     <BuildType Solution="Test|*" Project="Release" />
   </Project>
+  <Project Path="NHSISL.LibPostalNet/NHSISL.LibPostalNet.csproj">
+    <BuildType Solution="Acceptance|*" Project="Release" />
+    <BuildType Solution="Test|*" Project="Release" />
+  </Project>
 </Solution>
