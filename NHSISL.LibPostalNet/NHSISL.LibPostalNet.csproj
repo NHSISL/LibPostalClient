@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFrameworks>net10.0;netstandard2.1</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -9,6 +9,7 @@
 		<Company>NEL ICB</Company>
 		<Description> .NET Client wrapper for LibPostal that provides address parsing and normalisation capabilities.  </Description>
 		<Copyright>Copyright (c) NEL ICB</Copyright>
+		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageIcon>LibPostalNet.png</PackageIcon>
@@ -48,7 +49,7 @@
 		<Content Include="libpostal.h" />
 		<Content Include="libpostal-1.dll" PackagePath="contentFiles\windows\libpostal-1.dll" />
 		<Content Include="libpostal-1.so" PackagePath="contentFiles\linux_x86_64\libpostal-1.dll" />
-		<Content Include="NEL.LibPostalNet.targets" PackagePath="build\NEL.LibPostalNet.targets" />
+		<Content Include="NHSISL.LibPostalNet.targets" PackagePath="build\NHSISL.LibPostalNet.targets" />
 	</ItemGroup>
 
 	<ItemGroup>

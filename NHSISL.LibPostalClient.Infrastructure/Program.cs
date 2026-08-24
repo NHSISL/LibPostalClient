@@ -10,8 +10,11 @@ namespace NHSISL.LibPostalClient.Infrastructure
     {
         static void Main(string[] args)
         {
+            Environment.CurrentDirectory = AppContext.BaseDirectory;
+
             var scriptGenerationService = new ScriptGenerationService();
             scriptGenerationService.GenerateBuildScript();
+            scriptGenerationService.GeneratePrLinterScript();
         }
     }
 }
