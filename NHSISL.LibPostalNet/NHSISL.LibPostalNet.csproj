@@ -9,6 +9,7 @@
 		<Company>NEL ICB</Company>
 		<Description> .NET Client wrapper for LibPostal that provides address parsing and normalisation capabilities.  </Description>
 		<Copyright>Copyright (c) NEL ICB</Copyright>
+		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageIcon>LibPostalNet.png</PackageIcon>
