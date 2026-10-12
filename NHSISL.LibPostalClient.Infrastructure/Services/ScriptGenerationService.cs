@@ -86,19 +86,18 @@ namespace NHSISL.LibPostalClient.Infrastructure.Services
                     },
                     {
                         "add_tag",
-                        new TagJobV2(
+                        new TagJobV3(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "build",
                             projectRelativePath: "NHSISL.LibPostalClient/NHSISL.LibPostalClient.csproj",
-                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}",
                             branchName: branchName)
                     },
                     {
                         "publish",
-                        new PublishJobV4(
+                        new NugetTrustedPublishingJob(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "add_tag",
-                            nugetApiKey: "${{ secrets.NUGET_ACCESS }}",
+                            nugetUser: "${{ secrets.NUGET_USER }}",
                             dotNetVersion: "10.0.100")
                     }
                 }
