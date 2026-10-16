@@ -79,7 +79,10 @@ namespace NHSISL.LibPostalClient.Infrastructure.Services
 
                                 new TestTask
                                 {
-                                    Name = "Test"
+                                    Name = "Test",
+
+                                    Run = "dotnet test --solution LibPostalClient.slnx " +
+                                        "--no-build --verbosity normal --ignore-exit-code 8"
                                 }
                             }
                         }
